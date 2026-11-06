@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gallus Scientific | Fluorescence microscopy &amp; tissue clearing consultancy</title>
+<meta name="description" content="Independent consultancy in fluorescence microscopy, tissue clearing and fluorescent labelling, with 3D printed lab hardware design. Based in London, UK.">
+<meta property="og:title" content="Gallus Scientific">
+<meta property="og:description" content="Independent consultancy in fluorescence microscopy, tissue clearing and fluorescent labelling.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gallusscientific.com">
+<!-- Add og:image once you have a hero image: <meta property="og:image" content="https://gallusscientific.com/images/hero.jpg"> -->
+<style>
+  :root {
+    --bg: #07090d;
+    --bg-soft: #0d1117;
+    --card: #11161e;
+    --line: #1f2733;
+    --text: #e6eaf0;
+    --muted: #9aa5b4;
+    --accent: #3ee6c3;      /* GFP-ish green-cyan */
+    --accent-2: #ff5fa2;    /* Cy3/Cy5-ish magenta */
+    --accent-3: #6c8cff;    /* DAPI-ish blue */
+    --radius: 14px;
+    --max: 1080px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  header.nav {
+    position: sticky; top: 0; z-index: 10;
+    backdrop-filter: blur(10px);
+    background: rgba(7,9,13,.78);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: flex; flex-direction: column; line-height: 1; color: var(--text); letter-spacing: .18em; }
+  .brand:hover { text-decoration: none; }
+  .brand b { font-size: 1.05rem; font-weight: 700; }
+  .brand span { font-size: .58rem; letter-spacing: .32em; color: var(--muted); margin-top: 4px; }
+  .nav ul { list-style: none; display: flex; gap: 26px; margin: 0; padding: 0; }
+  .nav ul a { color: var(--muted); font-size: .92rem; }
+  .nav ul a:hover { color: var(--text); text-decoration: none; }
+
+  /* Hero */
+  .hero {
+    position: relative; overflow: hidden;
+    padding: 110px 0 96px;
+    background:
+      radial-gradient(600px 380px at 78% 20%, rgba(62,230,195,.14), transparent 70%),
+      radial-gradient(520px 360px at 92% 70%, rgba(255,95,162,.12), transparent 70%),
+      radial-gradient(520px 360px at 60% 95%, rgba(108,140,255,.12), transparent 70%),
+      var(--bg);
+  }
+  .hero .grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+  .eyebrow { color: var(--accent); font-size: .8rem; letter-spacing: .22em; text-transform: uppercase; margin: 0 0 18px; }
+  h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.08; margin: 0 0 20px; letter-spacing: -.02em; }
+  h1 em { font-style: normal; background: linear-gradient(90deg, var(--accent), var(--accent-3) 55%, var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lead { color: var(--muted); font-size: 1.12rem; max-width: 34em; margin: 0 0 30px; }
+  .btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: .95rem;
+    border: 1px solid var(--accent); color: #04110e; background: var(--accent);
+  }
+  .btn:hover { text-decoration: none; filter: brightness(1.08); }
+  .btn.ghost { background: transparent; color: var(--text); border-color: var(--line); }
+  .btn.ghost:hover { border-color: var(--muted); }
+
+  /* Media frames (images / looping video) */
+  .frame {
+    position: relative; border-radius: var(--radius); overflow: hidden;
+    border: 1px solid var(--line); background: var(--bg-soft);
+    aspect-ratio: 4 / 3;
+  }
+  .frame img, .frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .frame.placeholder {
+    display: grid; place-items: center; text-align: center; color: var(--muted); font-size: .85rem; padding: 16px;
+    background:
+      radial-gradient(circle at 30% 35%, rgba(62,230,195,.22), transparent 38%),
+      radial-gradient(circle at 68% 60%, rgba(255,95,162,.2), transparent 40%),
+      radial-gradient(circle at 50% 80%, rgba(108,140,255,.2), transparent 40%),
+      var(--bg-soft);
+  }
+
+  /* Sections */
+  section { padding: 84px 0; }
+  section.alt { background: var(--bg-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 10px; letter-spacing: -.01em; }
+  .sub { color: var(--muted); margin: 0 0 40px; max-width: 40em; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; transition: border-color .2s, transform .2s; }
+  .card:hover { border-color: #2d3a4c; transform: translateY(-2px); }
+  .card .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-bottom: 14px; }
+  .card h3 { margin: 0 0 8px; font-size: 1.12rem; }
+  .card p { margin: 0; color: var(--muted); font-size: .96rem; }
+
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; counter-reset: s; }
+  .step { border-left: 2px solid var(--accent); padding: 4px 0 4px 18px; }
+  .step::before { counter-increment: s; content: "0" counter(s); color: var(--accent); font-size: .8rem; letter-spacing: .15em; }
+  .step h3 { margin: 4px 0 6px; font-size: 1.05rem; }
+  .step p { margin: 0; color: var(--muted); font-size: .94rem; }
+
+  .about { display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; align-items: start; }
+  .about .frame { aspect-ratio: 1 / 1; }
+  .about p { color: var(--muted); margin: 0 0 16px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .tags span { border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: .82rem; color: var(--muted); }
+
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+  figure { margin: 0; }
+  figcaption { color: var(--muted); font-size: .85rem; margin-top: 8px; }
+
+  details { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 22px; margin-bottom: 12px; }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { color: var(--muted); margin: 12px 0 2px; }
+
+  .contact-box {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 40px; text-align: center;
+    background-image: radial-gradient(500px 220px at 50% 0%, rgba(62,230,195,.12), transparent 70%);
+  }
+  .contact-box .mail { font-size: clamp(1.2rem, 3vw, 1.7rem); font-weight: 600; display: inline-block; margin: 8px 0 14px; }
+  .contact-box p { color: var(--muted); margin: 0 auto; max-width: 34em; }
+
+  footer { border-top: 1px solid var(--line); padding: 30px 0 40px; color: var(--muted); font-size: .85rem; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  @media (max-width: 820px) {
+    .hero { padding: 70px 0 60px; }
+    .hero .grid, .about { grid-template-columns: 1fr; }
+    .nav ul { gap: 16px; }
+    .nav ul li.hide-sm { display: none; }
+    section { padding: 60px 0; }
+    .contact-box { padding: 28px 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .card { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Gallus Scientific home">
+      <b>GALLUS</b><span>SCIENTIFIC</span>
+    </a>
+    <nav>
+      <ul>
+        <li class="hide-sm"><a href="#services">Services</a></li>
+        <li class="hide-sm"><a href="#how">How it works</a></li>
+        <li class="hide-sm"><a href="#about">About</a></li>
+        <li class="hide-sm"><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap grid">
+      <div>
+        <p class="eyebrow">Independent scientific consultancy</p>
+        <h1>Clearer samples. <em>Sharper images.</em></h1>
+        <p class="lead">Gallus Scientific provides expert advice on fluorescence microscopy, tissue clearing and fluorescent labelling, from choosing the right microscope to getting a protocol working reliably in your lab.</p>
+        <div class="btns">
+          <a class="btn" href="#contact">Get in touch</a>
+          <a class="btn ghost" href="#services">What I do</a>
+        </div>
+      </div>
+
+      <!-- HERO MEDIA: replace the placeholder div with ONE of the two options below -->
+      <div class="frame placeholder" role="img" aria-label="Placeholder for a hero fluorescence image">
+        Hero image or looping clip goes here
+      </div>
+      <!--
+        Option A (still image):
+        <div class="frame"><img src="images/hero.jpg" alt="Describe the image: sample, stain, microscope"></div>
+
+        Option B (short looping clip, much smaller than a GIF):
+        <div class="frame">
+          <video autoplay muted loop playsinline poster="images/hero-poster.jpg">
+            <source src="images/hero.webm" type="video/webm">
+            <source src="images/hero.mp4" type="video/mp4">
+          </video>
+        </div>
+      -->
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <h2>Services</h2>
+      <p class="sub">Practical, protocol-level help for researchers and companies working with fluorescence imaging and cleared tissue.</p>
+      <div class="cards">
+        <div class="card">
+          <span class="dot" style="background:var(--accent)"></span>
+          <h3>Fluorescence microscopy advice</h3>
+          <p>Microscope and system selection, imaging strategy, acquisition settings and analysis planning, matched to your samples and budget.</p>
+        </div>
+        <div class="card">
+          <span class="dot" style="background:var(--accent-3)"></span>
+          <h3>Tissue clearing</h3>
+          <p>Choosing between clearing methods, adapting and optimising protocols, and troubleshooting problems such as shrinkage, opacity or signal loss.</p>
+        </div>
+        <div class="card">
+          <span class="dot" style="background:var(--accent-2)"></span>
+          <h3>Fluorescent labelling</h3>
+          <p>Dye and antibody selection, multiplexing panels, whole-mount immunolabelling and improving photostability in cleared samples.</p>
+        </div>
+        <div class="card">
+          <span class="dot" style="background:#ffc24a"></span>
+          <h3>3D printing &amp; design</h3>
+          <p>Custom lab hardware, sample holders, adapters and low-cost equipment, designed and made to be printable almost anywhere.</p>
+        </div>
+        <div class="card">
+          <span class="dot" style="background:#b58cff"></span>
+          <h3>Protocols &amp; documentation</h3>
+          <p>Reviewing the literature to extract the practical details, then turning them into clear, step-by-step protocols and written guidance your team can follow.</p>
+        </div>
+        <div class="card">
+          <span class="dot" style="background:#8fe36a"></span>
+          <h3>Support for industry</h3>
+          <p>Technical support for companies supplying microscopy and sample preparation products, including application notes and customer-facing guidance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="alt">
+    <div class="wrap">
+      <h2>How it works</h2>
+      <p class="sub">Consultancy is delivered remotely: advice, calls and written documentation.</p>
+      <div class="steps">
+        <div class="step"><h3>Intro call</h3><p>A short conversation about your samples, goals and what has or hasn't worked so far.</p></div>
+        <div class="step"><h3>Review &amp; plan</h3><p>I look at your protocols, data and options, and review the relevant literature.</p></div>
+        <div class="step"><h3>Advice &amp; documents</h3><p>You receive clear recommendations, usually with a written protocol or report.</p></div>
+        <div class="step"><h3>Follow-up</h3><p>Ongoing support while you put it into practice and refine the results.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap about">
+      <div class="frame placeholder" role="img" aria-label="Placeholder for a portrait or lab photo">Portrait or lab photo</div>
+      <div>
+        <h2>About</h2>
+        <p><!-- EDIT: 2 to 3 sentences. Who you are, your background, and what you've worked on. -->
+          I'm Dr Peter Gordon, an imaging consultant specialising in fluorescence microscopy, tissue clearing and fluorescent labelling. I help researchers and companies choose the right tools, build protocols that work, and understand why an experiment isn't behaving.</p>
+        <p>"Gallus" is Glaswegian for confident, bold and a little cheeky, which is how I like to approach a tricky imaging problem.</p>
+        <div class="tags">
+          <span>Fluorescence microscopy</span><span>Tissue clearing</span><span>Immunolabelling</span><span>Photostability</span><span>3D printing</span><span>Protocol design</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="alt">
+    <div class="wrap">
+      <h2>Gallery</h2>
+      <p class="sub">A few images from my own work.</p>
+      <div class="gallery">
+        <!-- Duplicate a <figure> block for each image. Use loading="lazy" and compressed JPG/WebP (under ~300 KB). -->
+        <figure>
+          <div class="frame placeholder" role="img" aria-label="Image placeholder">Image 1</div>
+          <figcaption>Caption: sample, stain, microscope, objective.</figcaption>
+        </figure>
+        <figure>
+          <div class="frame placeholder" role="img" aria-label="Image placeholder">Image 2</div>
+          <figcaption>Caption: sample, stain, microscope, objective.</figcaption>
+        </figure>
+        <figure>
+          <div class="frame placeholder" role="img" aria-label="Image placeholder">Image 3</div>
+          <figcaption>Caption: sample, stain, microscope, objective.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <h2>FAQ</h2>
+      <p class="sub">&nbsp;</p>
+      <details>
+        <summary>Who do you work with?</summary>
+        <p>Academic labs, core facilities, start-ups and companies in the life sciences and microscopy sector.</p>
+      </details>
+      <details>
+        <summary>Do you do hands-on lab work?</summary>
+        <p>At the moment the service is advice, documentation and calls. If you need bench work, get in touch and we can talk through options.</p>
+      </details>
+      <details>
+        <summary>How is work priced?</summary>
+        <p>Projects are quoted individually, based on scope. Get in touch with a short description and I'll come back with a clear estimate.</p>
+      </details>
+      <details>
+        <summary>Is my work kept confidential?</summary>
+        <p>Yes. I'm happy to sign an NDA before we discuss anything sensitive.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="alt">
+    <div class="wrap">
+      <div class="contact-box">
+        <h2>Let's talk</h2>
+        <a class="mail" href="mailto:peter@gallusscientific.com">peter@gallusscientific.com</a>
+        <p>Send a short description of your project, sample type and what you're trying to achieve, and I'll reply to arrange a call.</p>
+        <!-- Optional: <p><a href="https://www.linkedin.com/in/your-profile">LinkedIn</a></p> -->
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>&copy; <span id="yr">2026</span> Gallus Scientific. Sole trader, United Kingdom.</div>
+    <div>peter@gallusscientific.com</div>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
