@@ -45,11 +45,10 @@
     background: rgba(7,9,13,.78);
     border-bottom: 1px solid var(--line);
   }
-  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-  .brand { display: flex; flex-direction: column; line-height: 1; color: var(--text); letter-spacing: .18em; }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .brand { display: block; line-height: 0; }
   .brand:hover { text-decoration: none; }
-  .brand b { font-size: 1.05rem; font-weight: 700; }
-  .brand span { font-size: .58rem; letter-spacing: .32em; color: var(--muted); margin-top: 4px; }
+  .brand img { height: 54px; width: auto; display: block; }
   .nav ul { list-style: none; display: flex; gap: 26px; margin: 0; padding: 0; }
   .nav ul a { color: var(--muted); font-size: .92rem; }
   .nav ul a:hover { color: var(--text); text-decoration: none; }
@@ -157,7 +156,7 @@
 <header class="nav">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Gallus Scientific home">
-      <b>GALLUS</b><span>SCIENTIFIC</span>
+      <img src="images/logo-white.png" alt="Gallus Scientific" width="800" height="393">
     </a>
     <nav>
       <ul>
@@ -265,8 +264,8 @@
       <div class="frame placeholder" role="img" aria-label="Placeholder for a portrait or lab photo">Portrait or lab photo</div>
       <div>
         <h2>About</h2>
-        <p><!-- EDIT: 2 to 3 sentences. Who you are, your background, and what you've worked on. -->
-          I'm Dr Peter Gordon, an imaging consultant specialising in fluorescence microscopy, tissue clearing and fluorescent labelling. I help researchers and companies choose the right tools, build protocols that work, and understand why an experiment isn't behaving.</p>
+        <p>I'm Dr Peter Gordon, an imaging scientist with more than a decade of experience across cancer immunology and neuroscience. I develop tissue clearing, labelling and imaging methods for a wide range of samples and species, working across light microscopy from confocal and super-resolution to lightsheet, serial section two-photon and intravital imaging, paired with full-organ immunolabelling and multiplexed RNA labelling.</p>
+        <p>Much of my work means building approaches that don't exist yet, supported by my own CAD design, 3D printing and automation. I also lead multidisciplinary projects, train and supervise researchers, and collaborate with academic groups and supplier companies internationally. I'm at my best taking on an unfamiliar problem, finding a practical route through it, and turning complex methods into reliable tools that other researchers can use.</p>
         <p>"Gallus" is Glaswegian for confident, bold and a little cheeky, which is how I like to approach a tricky imaging problem.</p>
         <div class="tags">
           <span>Fluorescence microscopy</span><span>Tissue clearing</span><span>Immunolabelling</span><span>Photostability</span><span>3D printing</span><span>Protocol design</span>
