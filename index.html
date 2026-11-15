@@ -84,6 +84,11 @@
     aspect-ratio: 4 / 3;
   }
   .frame img, .frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* Gallery media keeps its full field of view (scale bars intact) on a black background */
+  .frame.media { background: #000; display: block; }
+  .frame.media img, .frame.media video { object-fit: contain; }
+  a.frame.media { cursor: zoom-in; }
+  a.frame.media:hover { border-color: #2d3a4c; text-decoration: none; }
   .frame.placeholder {
     display: grid; place-items: center; text-align: center; color: var(--muted); font-size: .85rem; padding: 16px;
     background:
@@ -185,22 +190,12 @@
         </div>
       </div>
 
-      <!-- HERO MEDIA: replace the placeholder div with ONE of the two options below -->
-      <div class="frame placeholder" role="img" aria-label="Placeholder for a hero fluorescence image">
-        Hero image or looping clip goes here
+      <!-- HERO MEDIA: looping silent clip (plays like a GIF, a fraction of the size) -->
+      <div class="frame">
+        <video autoplay muted loop playsinline preload="metadata" poster="images/hero-poster.jpg" aria-label="Rotating 3D fluorescence image of a cleared whole brain">
+          <source src="images/hero.mp4" type="video/mp4">
+        </video>
       </div>
-      <!--
-        Option A (still image):
-        <div class="frame"><img src="images/hero.jpg" alt="Describe the image: sample, stain, microscope"></div>
-
-        Option B (short looping clip, much smaller than a GIF):
-        <div class="frame">
-          <video autoplay muted loop playsinline poster="images/hero-poster.jpg">
-            <source src="images/hero.webm" type="video/webm">
-            <source src="images/hero.mp4" type="video/mp4">
-          </video>
-        </div>
-      -->
     </div>
   </div>
 
@@ -261,7 +256,7 @@
   <!-- ABOUT -->
   <section id="about">
     <div class="wrap about">
-      <div class="frame placeholder" role="img" aria-label="Placeholder for a portrait or lab photo">Portrait or lab photo</div>
+      <div class="frame"><img src="images/portrait.jpg" alt="Portrait of Dr Peter Gordon" width="480" height="480"></div>
       <div>
         <h2>About</h2>
         <p>I'm Dr Peter Gordon, an imaging scientist with more than a decade of experience across cancer immunology and neuroscience. I develop tissue clearing, labelling and imaging methods for a wide range of samples and species, working across light microscopy from confocal and super-resolution to lightsheet, serial section two-photon and intravital imaging, paired with full-organ immunolabelling and multiplexed RNA labelling.</p>
@@ -279,18 +274,27 @@
       <h2>Gallery</h2>
       <p class="sub">A few images from my own work.</p>
       <div class="gallery">
-        <!-- Duplicate a <figure> block for each image. Use loading="lazy" and compressed JPG/WebP (under ~300 KB). -->
+        <!-- Duplicate a <figure> block for each item. Images link to the full-size file. -->
         <figure>
-          <div class="frame placeholder" role="img" aria-label="Image placeholder">Image 1</div>
-          <figcaption>Caption: sample, stain, microscope, objective.</figcaption>
+          <div class="frame media">
+            <video autoplay muted loop playsinline preload="metadata" poster="images/x40-raw-poster.jpg" aria-label="x40 fluorescence acquisition of a ring-shaped cluster of cells">
+              <source src="images/x40-raw.mp4" type="video/mp4">
+            </video>
+          </div>
+          <!-- EDIT the captions: add sample, stain, microscope and objective -->
+          <figcaption>x40 raw acquisition</figcaption>
         </figure>
         <figure>
-          <div class="frame placeholder" role="img" aria-label="Image placeholder">Image 2</div>
-          <figcaption>Caption: sample, stain, microscope, objective.</figcaption>
+          <a class="frame media" href="images/x10-hgf.webp" target="_blank" rel="noopener" aria-label="Open the x10 HGF image at full size">
+            <img src="images/x10-hgf.webp" alt="x10 fluorescence image of a rounded tissue sample in yellow and red with cyan fibres around it, scale bar 100 micrometres" width="2119" height="1267" loading="lazy">
+          </a>
+          <figcaption>x10 HGF sample, scale bar 100 &micro;m</figcaption>
         </figure>
         <figure>
-          <div class="frame placeholder" role="img" aria-label="Image placeholder">Image 3</div>
-          <figcaption>Caption: sample, stain, microscope, objective.</figcaption>
+          <a class="frame media" href="images/head.webp" target="_blank" rel="noopener" aria-label="Open the head image at full size">
+            <img src="images/head.webp" alt="Fluorescence image of an insect head with a compound eye and a segmented antenna, scale bar 50 micrometres" width="2119" height="1267" loading="lazy">
+          </a>
+          <figcaption>Head, scale bar 50 &micro;m</figcaption>
         </figure>
       </div>
     </div>
