@@ -193,7 +193,8 @@
       <!-- HERO MEDIA: looping silent clip (plays like a GIF, a fraction of the size) -->
       <figure>
         <div class="frame">
-          <video autoplay muted loop playsinline preload="metadata" poster="images/hero-poster.jpg" aria-label="3D lightsheet animation of a tissue cleared mouse brain">
+          <!-- data-speed sets playback speed: 1 = normal, 1.5 = 50% faster, 2 = double -->
+          <video autoplay muted loop playsinline preload="metadata" data-speed="1.5" poster="images/hero-poster.jpg" aria-label="3D lightsheet animation of a tissue cleared mouse brain">
             <source src="images/hero.mp4" type="video/mp4">
           </video>
         </div>
@@ -347,6 +348,16 @@
   </div>
 </footer>
 
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  // Apply per-video playback speed (data-speed attribute)
+  document.querySelectorAll('video[data-speed]').forEach(function (v) {
+    var s = parseFloat(v.dataset.speed) || 1;
+    function set() { v.playbackRate = s; }
+    set();
+    v.addEventListener('loadedmetadata', set);
+    v.addEventListener('play', set);
+  });
+</script>
 </body>
 </html>
